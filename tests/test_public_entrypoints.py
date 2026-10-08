@@ -29,3 +29,12 @@ class PublicEntryTests(unittest.TestCase):
         self.assertEqual(tasks["experiment"]["args"], [])
         self.assertEqual(tasks["evaluate"]["args"], [])
         self.assertNotIn("generate", tasks)
+
+    def test_example_corpus_bytes_are_portable(self):
+        import hashlib
+        for label in ("a", "b"):
+            folder = ROOT / f"examples/knowledge_{label}/indexes/bm25"
+            data = (folder / "corpus.jsonl").read_bytes()
+            self.assertNotIn(b"\r\n", data)
+            manifest = json.loads((folder / "index_manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(hashlib.sha256(data).hexdigest(), manifest["corpus_sha256"])

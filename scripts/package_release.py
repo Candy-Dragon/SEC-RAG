@@ -6,7 +6,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-TOP = {"README.md", "requirements.txt", "environment.yml", "pyproject.toml", ".gitignore", ".env.example", "CONTRIBUTING.md", "LICENSE", "LICENSE.md"}
+TOP = {"README.md", "requirements.txt", "environment.yml", "pyproject.toml", ".gitignore", ".gitattributes", ".env.example", "CONTRIBUTING.md", "LICENSE", "LICENSE.md"}
 DIRECTORIES = {"src", "scripts", "configs", "tests", "examples", "docs", ".github"}
 SUFFIXES = {".py", ".md", ".json", ".jsonl", ".csv", ".txt", ".toml", ".yml", ".yaml"}
 

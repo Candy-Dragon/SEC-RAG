@@ -1,0 +1,22 @@
+{
+  "dataset": {
+    "name": "demo_b",
+    "path": "examples/questions.jsonl",
+    "format": "jsonl",
+    "columns": {
+      "qid": "number",
+      "question": "query",
+      "disease_scope": "category"
+    }
+  },
+  "knowledge_base": "examples/knowledge_b",
+  "scope_config": "examples/scope.json",
+  "top_n": 5,
+  "methods": [
+    "extractive_demo"
+  ],
+  "plugins": {
+    "extractive_demo": "sec_rag.experiments.extractive_demo:run"
+  },
+  "output_dir": "storage/experiments/examples/demo_b"
+}

@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "purpose": "Developer-authored regression expectations for text roles, not clinician labels or evaluation of medical truth. Selected from known failures and controls; not an independent accuracy benchmark.",
+  "cases": [
+    {
+      "id": "sec_full_refusal",
+      "source": "storage/experiments/evaluation/pilot/four-methods-v3/20260923T081324552036Z/questions/CMEDQA2_00892/sec_rag.json",
+      "source_sha256": "e15f004698f181fe3ac3624d7f0806a6d9961dd76a23c0e4964d75e3f6f34736",
+      "scope": "full_answer",
+      "source_unit_ids": null,
+      "answer": "当前检索及筛选没有获得足以回答该问题的适用指南证据，无法基于当前证据提供具体结论。",
+      "expected_kinds": [
+        "evidence_boundary"
+      ],
+      "expected_refusal": true
+    },
+    {
+      "id": "prompt_full_refusal",
+      "source": "storage/experiments/evaluation/pilot/four-methods-v3/20260923T081324552036Z/questions/CMEDQA2_00124/prompt_constrained_rag.json",
+      "source_sha256": "46099ceb010be4d95cc0201b7f5c9c1bfdcfbc16ea519fd68e053623f7c79fa8",
+      "scope": "full_answer",
+      "source_unit_ids": null,
+      "answer": "现有检索证据不足以回答该问题。证据中未提供针对30岁、血压170/130 mmHg、BMI约28.7、有高血压家族史患者的具体治疗方案或恢复正常血压的方法。",
+      "expected_kinds": [
+        "evidence_boundary",
+        "evidence_boundary"
+      ],
+      "expected_refusal": true
+    },
+    {
+      "id": "prompt_mixed",
+      "source": "storage/experiments/evaluation/pilot/four-methods-v3/20260923T081324552036Z/questions/CMEDQA2_01090/prompt_constrained_rag.json",
+      "source_sha256": "30bd70850b7a6d7686bded85b55368b029064aa3b6e510d41e054a1ff88a4fbc",
+      "scope": "full_answer",
+      "source_unit_ids": null,
+      "answer": "现有检索证据不足以回答该问题。证据2提到I期和II期非小细胞肺癌首选根治性手术治疗，术后根据病理分期决定是否行辅助治疗，包括化疗及靶向治疗等，但未明确早期高中分化肺鳞癌、未转移、手术后是否需要化疗。证据1仅涉及IIB期R1/R2切除患者的术后辅助化疗，不适用于未转移的早期高中分化肺鳞癌。其他证据未提供相关推荐。",
+      "expected_kinds": [
+        "evidence_boundary",
+        "medical",
+        "evidence_boundary",
+        "medical",
+        "evidence_boundary"
+      ],
+      "expected_refusal": false
+    },
+    {
+      "id": "sec_partial",
+      "source": "storage/experiments/evaluation/pilot/four-methods-v3/20260923T081324552036Z/questions/CMEDQA2_00124/sec_rag.json",
+      "source_sha256": "439cfd363fe864e690fe9e4bb1ef314045951dc92543b5159ba59dbd9b38798f",
+      "scope": "full_answer",
+      "source_unit_ids": null,
+      "answer": "对于高血压的治疗，建议制定个体化降压方案，并在可耐受的前提下逐步调整，使血压平稳达标。 [E028]\n\n当前提供的指南证据未覆盖具体降压药物选择或联合用药方案，也未覆盖该患者能否有效治疗恢复正常血压、针对30岁、血压170/130 mmHg、体重81 kg或家族史的具体治疗决定，以及检查顺序、诊断结论或个体化预后。",
+      "expected_kinds": [
+        "medical",
+        "evidence_boundary"
+      ],
+      "expected_refusal": false
+    },
+    {
+      "id": "bare_medical",
+      "source": "storage/experiments/evaluation/pilot/four-methods-v3/20260923T081324552036Z/questions/CMEDQA2_01976/llm_only.json",
+      "source_sha256": "36964195bc4dce488dcca7b8c4c8cc3403fe9a0adb43ad9fcb22037c5ba9983a",
+      "scope": "excerpt",
+      "source_unit_ids": [
+        "C1"
+      ],
+      "answer": "长期咳嗽痰多（数年）不一定就是肺癌，但需要系统检查排除。",
+      "expected_kinds": [
+        "medical"
+      ],
+      "expected_refusal": false
+    },
+    {
+      "id": "bare_heading",
+      "source": "storage/experiments/evaluation/pilot/four-methods-v3/20260923T081324552036Z/questions/CMEDQA2_01976/llm_only.json",
+      "source_sha256": "36964195bc4dce488dcca7b8c4c8cc3403fe9a0adb43ad9fcb22037c5ba9983a",
+      "scope": "excerpt",
+      "source_unit_ids": [
+        "C4"
+      ],
+      "answer": "2. **影像学检查**：",
+      "expected_kinds": [
+        "other"
+      ],
+      "expected_refusal": false
+    },
+    {
+      "id": "traditional_medical",
+      "source": "storage/experiments/evaluation/pilot/four-methods-v3/20260923T081324552036Z/questions/CMEDQA2_01976/traditional_rag.json",
+      "source_sha256": "21497149bb5e8ee7ca4b341d5f4d0dbe9fac3ee42846ed16bfed857ebda547ab",
+      "scope": "excerpt",
+      "source_unit_ids": [
+        "C2"
+      ],
+      "answer": "1. 首先进行胸部影像学检查：胸部CT是当前肺癌诊断、分期和疗效评价最主要的影像学手段，可有效检出早期周围型肺癌，明确病变部位和累及范围[证据1]。",
+      "expected_kinds": [
+        "medical"
+      ],
+      "expected_refusal": false
+    },
+    {
+      "id": "applicability_negative",
+      "source": "storage/experiments/evaluation/pilot/four-methods-v3/20260923T081324552036Z/questions/CMEDQA2_01090/prompt_constrained_rag.json",
+      "source_sha256": "30bd70850b7a6d7686bded85b55368b029064aa3b6e510d41e054a1ff88a4fbc",
+      "scope": "excerpt",
+      "source_unit_ids": [
+        "C3"
+      ],
+      "answer": "证据1仅涉及IIB期R1/R2切除患者的术后辅助化疗，不适用于未转移的早期高中分化肺鳞癌。",
+      "expected_kinds": [
+        "medical"
+      ],
+      "expected_refusal": false
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "tasks": {
+    "env": {
+      "script": "scripts/00_check_env.py",
+      "description": "Check installed dependencies",
+      "execution": "offline",
+      "args": []
+    },
+    "data.inspect": {
+      "script": "scripts/cmedqa2/01_inspect.py",
+      "description": "Inspect raw cMedQA2",
+      "execution": "offline",
+      "args": []
+    },
+    "data.candidates": {
+      "script": "scripts/cmedqa2/02_build_candidates.py",
+      "description": "Filter cMedQA2 candidates",
+      "execution": "offline",
+      "args": []
+    },
+    "data.pool": {
+      "script": "scripts/cmedqa2/03_build_question_pool.py",
+      "description": "Build cMedQA2 question pool",
+      "execution": "offline",
+      "args": []
+    },
+    "knowledge.extract": {
+      "script": "scripts/knowledge/01_extract_guideline_pages.py",
+      "description": "Extract guideline pages",
+      "execution": "offline",
+      "args": []
+    },
+    "knowledge.check-text": {
+      "script": "scripts/knowledge/02_check_extracted_text.py",
+      "description": "Check extracted text",
+      "execution": "offline",
+      "args": []
+    },
+    "knowledge.clean": {
+      "script": "scripts/knowledge/03_clean_extracted_text.py",
+      "description": "Clean guideline text",
+      "execution": "offline",
+      "args": []
+    },
+    "knowledge.chunk": {
+      "script": "scripts/knowledge/04_build_chunks.py",
+      "description": "Build evidence chunks",
+      "execution": "offline",
+      "args": []
+    },
+    "knowledge.check-chunks": {
+      "script": "scripts/knowledge/05_check_chunks.py",
+      "description": "Check chunk quality",
+      "execution": "offline",
+      "args": []
+    },
+    "knowledge.index": {
+      "script": "scripts/knowledge/06_build_bm25_index.py",
+      "description": "Build BM25 index",
+      "execution": "offline",
+      "args": []
+    },
+    "knowledge.search": {
+      "script": "scripts/knowledge/07_search_bm25.py",
+      "description": "Search BM25; supply a query",
+      "execution": "offline",
+      "args": []
+    },
+    "generate": {
+      "script": "scripts/development/06_run_development_first_batch.py",
+      "description": "Generate four methods for frozen development 30",
+      "execution": "DeepSeek API",
+      "args": [
+        "--limit",
+        "30",
+        "--split-dir",
+        "storage/datasets/processed/cmedqa2/splits/v2",
+        "--output-dir",
+        "storage/experiments/development/cmedqa2/first_batch_v2"
+      ]
+    },
+    "evaluate": {
+      "script": "scripts/evaluation/03_evaluate_four_methods_pilot.py",
+      "description": "Evaluate the same development batch",
+      "execution": "local Ollama",
+      "args": [
+        "--workers",
+        "2",
+        "--source-dir",
+        "storage/experiments/development/cmedqa2/first_batch_v2",
+        "--output-base",
+        "storage/experiments/evaluation/development/cmedqa2/four-methods-v4"
+      ]
+    },
+    "question": {
+      "script": "scripts/sec_rag/01_run_question.py",
+      "description": "Run SEC-RAG on one question; supply question/id/disease",
+      "execution": "DeepSeek API",
+      "args": []
+    },
+    "experiment": {
+      "script": "scripts/experiment.py",
+      "description": "Configurable dataset, knowledge and method runner; supply --experiment",
+      "execution": "depends on selected methods",
+      "args": []
+    },
+    "evaluate.smoke3": {
+      "script": "scripts/evaluation/03_evaluate_four_methods_pilot.py",
+      "description": "Evaluate the saved framework smoke test: 3 questions, 4 methods; no answer generation",
+      "execution": "local Ollama",
+      "args": [
+        "--workers",
+        "2",
+        "--source-dir",
+        "storage/experiments/testing/framework/cmedqa2_smoke3_20261006",
+        "--output-base",
+        "storage/experiments/evaluation/framework/cmedqa2_smoke3"
+      ]
+    }
+  }
+}

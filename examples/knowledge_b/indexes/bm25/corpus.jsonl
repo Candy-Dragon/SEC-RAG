@@ -1,0 +1,5 @@
+{"chunk_id": "demo_b_1", "document_id": "demo_b", "disease": "demo", "source_file": "synthetic_b.txt", "page_start": 1, "page_end": 1, "section_heading": "合成演示", "text": "演示文档 B 的标识为 1。仅用于软件接口测试。", "tokens": ["演示", "文档", "b", "1"]}
+{"chunk_id": "demo_b_2", "document_id": "demo_b", "disease": "demo", "source_file": "synthetic_b.txt", "page_start": 1, "page_end": 1, "section_heading": "合成演示", "text": "演示文档 B 的标识为 2。仅用于软件接口测试。", "tokens": ["演示", "文档", "b", "2"]}
+{"chunk_id": "demo_b_3", "document_id": "demo_b", "disease": "demo", "source_file": "synthetic_b.txt", "page_start": 1, "page_end": 1, "section_heading": "合成演示", "text": "演示文档 B 的标识为 3。仅用于软件接口测试。", "tokens": ["演示", "文档", "b", "3"]}
+{"chunk_id": "demo_b_4", "document_id": "demo_b", "disease": "demo", "source_file": "synthetic_b.txt", "page_start": 1, "page_end": 1, "section_heading": "合成演示", "text": "演示文档 B 的标识为 4。仅用于软件接口测试。", "tokens": ["演示", "文档", "b", "4"]}
+{"chunk_id": "demo_b_5", "document_id": "demo_b", "disease": "demo", "source_file": "synthetic_b.txt", "page_start": 1, "page_end": 1, "section_heading": "合成演示", "text": "演示文档 B 的标识为 5。仅用于软件接口测试。", "tokens": ["演示", "文档", "b", "5"]}

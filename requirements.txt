@@ -1,0 +1,14 @@
+# SEC-RAG full dependencies (ASCII-only for Windows pip)
+# Usage: pip install -r requirements.txt
+
+# Phase 1: config and API
+python-dotenv==1.0.1
+pydantic==2.11.3
+pydantic-settings==2.10.1
+httpx==0.28.1
+
+# Phase 3: knowledge-base construction and BM25 retrieval
+pypdf==5.4.0
+numpy==2.1.3
+jieba==0.42.1
+rank-bm25==0.2.2

@@ -1,0 +1,35 @@
+# Local environment and IDE state
+__pycache__/
+*.pyc
+.venv/
+.env
+.idea/
+
+# Original datasets and guideline documents may have redistribution restrictions.
+# Keep directory structure/instructions in the public repository, not local copies.
+storage/datasets/raw/**
+storage/knowledge_base/documents/**
+
+# Generated data and experiment artifacts are reproducible local outputs.
+storage/datasets/processed/**
+storage/knowledge_base/extracted/**
+storage/knowledge_base/cleaned/**
+storage/knowledge_base/quality/**
+storage/knowledge_base/indexes/**
+storage/knowledge_base/chunks/**
+storage/experiments/**
+storage/files/logs/**
+storage/files/exports/**
+
+# Allow small explanatory files to be committed when added deliberately.
+!storage/**/
+!storage/**/README.md
+!storage/**/.gitkeep
+
+# Local presentation workspace and retired utilities
+archive/
+ppt_workspace/
+.pytest_cache/
+*.egg-info/
+build/
+dist/

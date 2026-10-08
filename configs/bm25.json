@@ -1,0 +1,11 @@
+{
+  "algorithm": "BM25Okapi",
+  "tokenizer": "jieba_search_mode",
+  "lowercase_latin": true,
+  "remove_punctuation_only_tokens": true,
+  "remove_stopwords": false,
+  "k1": 1.5,
+  "b": 0.75,
+  "default_top_k": 5,
+  "parameter_status": "standard_baseline_values_to_be_kept_fixed_for_initial_experiments"
+}

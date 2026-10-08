@@ -1,0 +1,20 @@
+{
+  "method_version": "sec-rag-v5-context-v1",
+  "base_method": "sec-rag-v5",
+  "change": "Stage 04 checks each extracted evidence sentence against its original chunk context before mapping it to a question need.",
+  "retrieval": {
+    "backend": "BM25Okapi",
+    "shared_across_rag_methods": true,
+    "initial_top_n": 5,
+    "llm_reranking": false
+  },
+  "concurrency": {
+    "stage02_chunk_workers": 3,
+    "stage03_integrity_workers": 5,
+    "stage03_recovery_workers": 3,
+    "stage04_applicability_workers": 5
+  },
+  "stages": ["01_retrieval", "02_evidence_units", "03_integrity", "04_applicability", "05_coverage", "06_final_answer"],
+  "applicability_policy": "Use the original chunk to recover scope omitted by sentence extraction; match only when the extracted evidence remains applicable. The chunk context is not an additional approved citation.",
+  "answer_policy": "Only approved evidence units may be cited; all stages and model traces are saved."
+}

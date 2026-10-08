@@ -1,0 +1,19 @@
+{
+  "scope_version": "1.0",
+  "task_definition": "controlled_disease_guideline_qa",
+  "included_diseases": [
+    "diabetes",
+    "hypertension",
+    "lung_cancer"
+  ],
+  "retrieval_scope_mode": "dataset_controlled_domain",
+  "main_experiment_question_policy": "single_disease_only",
+  "multi_disease_question_policy": "reserve_for_separate_extension_experiment",
+  "clinical_deployment_claim": false,
+  "notes": [
+    "Each question in the main experiment belongs to a preselected disease subset.",
+    "Retrieval is restricted to guidelines for that disease subset.",
+    "All compared methods use the same disease scope.",
+    "This configuration evaluates an engineering research method within controlled disease domains; it does not evaluate open-domain disease routing or clinical deployment."
+  ]
+}

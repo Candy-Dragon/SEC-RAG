@@ -1,0 +1,20 @@
+# SEC-RAG Conda 环境定义
+#
+# 创建环境:
+#   conda env create -f environment.yml
+#
+# 激活环境:
+#   conda activate sec-rag
+#
+# 更新环境（修改本文件后）:
+#   conda env update -f environment.yml --prune
+
+name: sec-rag
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip>=24.0
+  - pip:
+      - -r requirements.txt

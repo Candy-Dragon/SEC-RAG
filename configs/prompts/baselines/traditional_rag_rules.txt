@@ -1,0 +1,3 @@
+请参考用户消息中提供的检索证据回答。检索结果可能包含不相关内容，请自行选择。
+使用证据时在answer中标注[证据1]这样的编号，并将使用的编号写入citations。
+本方法不单独执行证据充分性判断，因此evidence_sufficient必须为null，insufficiency_reason必须为空字符串。

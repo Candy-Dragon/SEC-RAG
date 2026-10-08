@@ -26,7 +26,7 @@
   "configs/sec_rag_v5_context_v1.json": "258245911d1d41506a44efac45c346ef871cf290848cf8df012f67c460b728e0",
   "configs/tasks.json": "96cba5092378d575cbe3e5a8bc5b441dc4e35a665f48c368cf37638f9dcc0ffd",
   "CONTRIBUTING.md": "df6ae9fa3453a00b508367bc0718ac1494a0f5888d5583c25c304980772ac2d0",
-  "docs/acceptance.md": "49482c8da62773eced583e1f55e3fbf9374a6e7bfb21c3904be7c8382f3c83b6",
+  "docs/acceptance.md": "17bd9ac6cc898df7937d50e18dd96342af66fa8f57c7e06285b31c2d40fc1ccc",
   "docs/data.md": "15adfa1944231c379f48ec2b5b332b3075b832a16a99ef77ad142640564fba26",
   "docs/evaluation.md": "f865910cec2c26de85cbaa30e902bab01c23bf35ea4a1fd69adb32ebfd1cebdf",
   "docs/evidence_alignment.md": "9c330ab832b38aae2a6e398e9f97c9eecdff75ab4cecac98333118aefbbaad02",
@@ -85,7 +85,7 @@
   "src/sec_rag/experiments/prompt_constrained_rag.py": "b6aa4b03077ac804d0b0158424427c1fe8650aff03fe52fcda7b560062fd63ab",
   "src/sec_rag/experiments/prompts.py": "9788fb78f9de5bc0b201b55eb9a9de7b79fdcd87b36a3e95d7ddc20d0daa1025",
   "src/sec_rag/experiments/run_record.py": "3280daff94fa176260d09baf2b84d78522a7cbe367683b301919b65b231ec49a",
-  "src/sec_rag/experiments/structured_output.py": "980e509a1c129adabec75b1f8533835a17753d7b814adbc6e8c09cf72f7db7f4",
+  "src/sec_rag/experiments/structured_output.py": "d222257bedbaa9fa51ecc2c41cf2e84476fd1839452d971edaa2ac9e4cb024e4",
   "src/sec_rag/experiments/traditional_rag.py": "15f051219bf9a3888bc1ba0620ec3c3f8acb501801dc8151af76187538c64e5e",
   "src/sec_rag/filter/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "src/sec_rag/filter/applicability.py": "ba374139bc1acf237f20ded8583d6056fda4cda418bbd07ab4547e9c302c2f4c",
@@ -129,5 +129,6 @@
   "tests/test_pipeline.py": "34678e12ae778ae01096a3916e17f7d51705d40022a716b338c947c6555084ed",
   "tests/test_public_entrypoints.py": "d10bd5d5aeec8c82319f8e259ae450bf49bab137aea496938eb7c023cc83ddcf",
   "tests/test_sec_rag_v5.py": "70791b601ee7cb394e6065ccd6aa16e6ed0669f83ec1eed2ca3e09648a8e0b0b",
+  "tests/test_structured_output.py": "bf72adee9dc414b2d854519dd3145bf418a534cff00f2e9a49b3fc86ffba24d4",
   "tests/test_task_entry.py": "880ad654915ba35cdc75bef1ce7e171e6fd9eb375d0159d94119ce43ca70f2bb"
 }

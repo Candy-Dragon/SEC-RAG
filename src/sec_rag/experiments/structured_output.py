@@ -42,10 +42,13 @@ def parse_common_output(
             raise DeepSeekAPIError("Citation must be an evidence number, not a boolean.")
         if isinstance(value, int):
             number = value
+        elif isinstance(value, str) and re.fullmatch(r"[1-9][0-9]*", value):
+            # Lossless normalization only; do not infer or repair evidence IDs.
+            number = int(value)
         elif isinstance(value, str) and (match := re.fullmatch(r"(?:\[证据([1-9]\d*)\]|证据([1-9]\d*))", value)):
             number = int(match.group(1) or match.group(2))
         else:
-            raise DeepSeekAPIError("Citation must be an integer or a '证据N'/'[证据N]' marker.")
+            raise DeepSeekAPIError("Citation must be an integer, a positive decimal string, or a '证据N'/'[证据N]' marker.")
         if not 1 <= number <= evidence_count:
             raise DeepSeekAPIError("Output contains a citation outside the supplied evidence range.")
         normalized_citations.append(number)

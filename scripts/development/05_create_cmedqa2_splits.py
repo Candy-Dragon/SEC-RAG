@@ -21,8 +21,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from sec_rag.data.cmedqa2.question_pool import default_pool_path
 
-PILOT_CONFIG = ROOT / "configs" / "development_review_qids_v1.json"
-DEFAULT_OUTPUT = ROOT / "storage" / "datasets" / "processed" / "cmedqa2" / "splits" / "v2"
+
+DEFAULT_OUTPUT = ROOT / "storage" / "datasets" / "processed" / "cmedqa2" / "splits" / "default"
 FIELDS = ("qid", "question", "disease_scope", "source_dataset", "source_original_id")
 
 
@@ -100,10 +100,12 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=20260924)
     parser.add_argument("--dev-per-disease", type=int, default=10)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--pool", type=Path, help="Processed cMedQA2 question pool CSV")
+    parser.add_argument("--exclude-config", type=Path, help="Optional JSON with questions:[{qid:...}] already used for development")
     args = parser.parse_args()
-    pool_path = default_pool_path()
+    pool_path = args.pool or default_pool_path()
     rows = load_rows(pool_path)
-    pilot_qids = {item["qid"] for item in json.loads(PILOT_CONFIG.read_text(encoding="utf-8"))["questions"]}
+    pilot_qids = {item["qid"] for item in json.loads(args.exclude_config.read_text(encoding="utf-8"))["questions"]} if args.exclude_config else set()
     partitions, sample, excluded = partition(rows, pilot_qids, args.seed, args.dev_per_disease)
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -116,7 +118,7 @@ def main() -> None:
     manifest = {
         "purpose": "Disjoint, reproducible question partitions; not guideline answerability labels",
         "source_pool": {"path": str(pool_path), "sha256": sha256(pool_path), "rows": len(rows)},
-        "excluded_pilot": {"path": str(PILOT_CONFIG), "sha256": sha256(PILOT_CONFIG), "qids": sorted(pilot_qids)},
+        "excluded_pilot": {"path": str(args.exclude_config) if args.exclude_config else None, "sha256": sha256(args.exclude_config) if args.exclude_config else None, "qids": sorted(pilot_qids)},
         "excluded_counts": dict(excluded),
         "eligibility": "Exactly one disease domain in the preprocessed pool; pilot qids excluded",
         "split": "Within-disease seeded shuffle, floor(70%) development, floor(15%) validation, remainder test",

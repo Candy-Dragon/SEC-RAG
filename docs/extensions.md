@@ -29,7 +29,7 @@ SEC-RAG内部仍走六阶段，不强迫其他方法经过这些阶段。同一�
 评价入口加--source-dir指向实验目录，会从experiment_manifest.json读取方法列表。自定义方法按RAG引用格式评价；裸模型仅llm_only按无引用方法处理。当前尚不支持用配置声明任意新方法的其他引用协议。
 
 ```bat
-python -s scripts/evaluation/03_evaluate_four_methods_pilot.py --source-dir storage/experiments/examples/demo_a --check-only
+python -s scripts/evaluate.py --source-dir storage/experiments/examples/demo_a --check-only
 ```
 
 此命令只校验生成产物；实际评价仍需要本地Ollama。合成示例无需评分，也不能混入论文结果。
@@ -37,3 +37,21 @@ python -s scripts/evaluation/03_evaluate_four_methods_pilot.py --source-dir stor
 ## 当前边界
 
 支持CSV/JSONL数据字段适配、BM25知识库目录替换及RAG方法函数注册；不宣称支持全部数据格式、向量检索器、所有模型提供商或任意内部阶段插拔。DeepSeek生成调用和Ollama评价调用仍分别封装。将新提供商接入它们需要遵守现有请求响应协议。
+
+
+## 六阶段插件契约
+
+components键固定为01_retrieval、02_evidence_units、03_integrity、04_applicability、05_coverage、06_final_answer；值为当前仓库内module:function。缺省项使用默认实现。首阶段签名为(question, *, question_id, source_dataset, disease_scope, top_n, output_path)，其他阶段为(input_path, output_path)，均返回完成记录字典。
+
+公共记录必须含stage、status=completed、input（保持问题身份）及阶段内容。执行器写入component来源和source_record。内置阶段另保存method_version与调用轨迹。字段检查代码以method/components.py为准：
+
+- 01：retrieval_results，连续rank、唯一chunk_id、document_id、disease、source_file、page_start/end、text。
+- 02：candidate_chunks（原句sentence_id/text）、evidence_units（evidence_id/text、source_chunk_id、source_file/pages、sentence_ids、section_heading）、excluded_sentences。保留初始片段集合。
+- 03：usable_evidence_units、withheld_evidence_units。恢复证据用recovered_from_evidence_id追溯，保留原句位置。
+- 04：information_need_annotation（original_question、information_needs中的need_id/source_span/description）和mapped_evidence_units（含need_mapping）。原文位置必须来自原问题，证据不得改写。
+- 05：同一信息需求、mapped_evidence_units、coverage_analysis。后者包含coverage_items、overall_coverage和generation_boundaries；allowed_evidence_ids仅含已有证据。
+- 06：approved_evidence、coverage_analysis、final_answer（answer、claims、insufficient_information）。claims需包含claim_id/text/evidence_ids/claim_type；引用仅限获准证据。
+
+原始问题始终不变。04为了理解适用条件，明确通过03来源链读取02的candidate_chunks；这是接口依赖。新模块不能省略它。公共校验不等于医学语义正确验证。
+
+可直接参考structurer/sentences.py及examples/experiment_sentence_units.json替换02。先check-only，再小样本完整运行，然后再设计科学比较。所有API方法用量与原始响应应保存到阶段记录。不能以插件接口为由绕过追溯。

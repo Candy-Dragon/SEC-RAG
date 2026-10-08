@@ -1,7 +1,7 @@
 {
   "dataset": {
     "name": "cmedqa2",
-    "path": "storage/datasets/processed/cmedqa2/splits/v2/development_first_batch.csv",
+    "path": "storage/datasets/processed/cmedqa2/splits/default/development_first_batch.csv",
     "format": "csv",
     "columns": {
       "qid": "qid",
@@ -19,7 +19,7 @@
     "prompt_constrained_rag"
   ],
   "plugins": {},
-  "output_dir": "storage/experiments/development/cmedqa2/standardized_v1",
+  "output_dir": "storage/experiments/cmedqa2/development_run_001",
   "components": {
     "01_retrieval": "sec_rag.retriever.bm25:stage01_retrieval",
     "02_evidence_units": "sec_rag.structurer.evidence:stage02_evidence_units",

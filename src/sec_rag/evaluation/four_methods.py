@@ -239,8 +239,8 @@ def main():
     parser.add_argument("--resume",type=Path)
     parser.add_argument("--workers",type=int,choices=(1,2),default=1)
     parser.add_argument("--check-only",action="store_true",help="Validate all selected inputs without contacting any model")
-    parser.add_argument("--source-dir",type=Path,default=PILOT,help="Directory containing questions/<qid> results for all four methods")
-    parser.add_argument("--output-base",type=Path,default=ROOT/"storage/experiments/evaluation/pilot/four-methods-v4")
+    parser.add_argument("--source-dir",type=Path,required=True,help="Directory containing questions/<qid> results for all four methods")
+    parser.add_argument("--output-base",type=Path,default=ROOT/"storage/experiments/evaluation")
     args=parser.parse_args()
     source_dir=args.source_dir.resolve()
     experiment_manifest=source_dir/"experiment_manifest.json"

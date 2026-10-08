@@ -52,8 +52,6 @@ def check_project_layout() -> list[str]:
         ROOT / "src" / "sec_rag",
         ROOT / "scripts",
         ROOT / "configs",
-        ROOT / "storage" / "datasets" / "raw",
-        ROOT / "storage" / "knowledge_base" / "documents",
     ]
     missing = [str(path.relative_to(ROOT)) for path in required_dirs if not path.exists()]
     return missing

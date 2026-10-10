@@ -1,0 +1,23 @@
+{
+  "dataset": {
+    "name": "demo_a",
+    "path": "examples/questions.csv",
+    "format": "csv",
+    "columns": {
+      "qid": "id",
+      "question": "question",
+      "disease_scope": "domain"
+    }
+  },
+  "knowledge_base": "examples/knowledge_a",
+  "scope_config": "examples/scope.json",
+  "top_n": 5,
+  "methods": [
+    "llm_only",
+    "traditional_rag",
+    "prompt_constrained_rag",
+    "sec_rag"
+  ],
+  "plugins": {},
+  "output_dir": "storage/experiments/examples/full_pipeline_recheck_20261010"
+}
